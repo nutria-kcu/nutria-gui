@@ -1,4 +1,7 @@
 import { app, BrowserWindow } from 'electron';
+import path from 'path';
+import isDev from 'electron-is-dev';
+
 
 let mainWindow: BrowserWindow | null;
 
@@ -10,8 +13,9 @@ function createWindow(): void {
       nodeIntegration: true,
     },
   });
-
-  mainWindow.loadFile('index.html');
+  const startURL = 'http://localhost:3000'
+  // mainWindow.loadFile('index.html');
+  mainWindow.loadURL(startURL);
 
   mainWindow.on('closed', () => {
     mainWindow = null;

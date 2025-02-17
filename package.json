@@ -3,12 +3,13 @@
     "@types/electron": "^1.4.38",
     "@types/node": "^22.13.4",
     "electron": "^34.2.0",
+    "electron-is-dev": "^3.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "electron dist/main.js",
     "build": "tsc",
-    "dev": "tsc && electron ."
+    "dev": "tsc && electron dist/main.js"
   }
 }

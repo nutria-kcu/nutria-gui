@@ -15,10 +15,12 @@ function createWindow(): void {
   });
   const startURL = 'http://localhost:3000'
   // mainWindow.loadFile('index.html');
+  mainWindow.removeMenu(); // windows: remove menu bar
   mainWindow.loadURL(startURL);
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+    
   });
 }
 

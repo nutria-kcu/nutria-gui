@@ -5,3 +5,5 @@ const LoadView = () => {
         </div>
     )
 }
+
+export default LoadView;

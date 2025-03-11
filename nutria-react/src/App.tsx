@@ -4,6 +4,10 @@ import './App.css';
 import SlidableSet from './components/SlidableSet';
 
 function App() {
+  const test = (value: number) => {
+    console.log("d" + value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">

@@ -6,6 +6,7 @@
     "@heroui/react": "^2.7.5",
     "@heroui/react-utils": "^2.1.8",
     "@heroui/slider": "^2.4.13",
+    "@heroui/spinner": "^2.2.13",
     "@heroui/system": "^2.4.12",
     "@heroui/theme": "^2.4.12",
     "@tailwindcss/postcss": "^4.0.12",

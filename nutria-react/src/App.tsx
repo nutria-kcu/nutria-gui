@@ -3,6 +3,7 @@ import logo from './assets/logo.svg';
 import './App.css';
 import SlidableSet, { ArmorSlider, AmmoSlider } from './components/SlidableSet';
 import RecoilButton from './components/RecoilButton'
+import LoadView from './components/LoadView';
 
 function App() {
   const test = (value: number) => {

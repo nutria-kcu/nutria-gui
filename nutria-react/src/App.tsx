@@ -62,14 +62,14 @@ function App() {
         const result = await handleCheckAC()
         console.log(result)
         setIsActivated(result);
-      }, 5000);
+      }, 3000);
 
       return () => clearInterval(intervalId);
     } else {
       const intervalId = setInterval(async () => {
         const result = await handleCheckAC()
         setIsActivated(result);
-      }, 5000);
+      }, 3000);
 
       return () => clearInterval(intervalId);
     }

@@ -9,11 +9,10 @@ const ToggleCheckBox = (props: toggleProps) => {
   const handleSelectionChange = (newSelection: boolean) => {
     // Your custom logic when isSelected changes
     setIsSelected(newSelection);
-
 		if (newSelection) {
-			props.onSet?.(1);
-		} else {
 			props.onSet?.(0);
+		} else {
+			props.onSet?.(1);
 		}
 
     // Example: Do something when the selection changes, like updating a backend or state

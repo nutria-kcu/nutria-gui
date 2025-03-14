@@ -1,15 +1,55 @@
 {
+  "name": "nutria-hack",
+  "version": "1.0.0",
+  "main": "./dist/main.js",
+  "description": "assault cube hack",
+  "author": "KCU TEAM NUTRIA",
   "devDependencies": {
+    "@electron-forge/cli": "^7.7.0",
+    "@electron-forge/maker-deb": "^7.7.0",
+    "@electron-forge/maker-rpm": "^7.7.0",
+    "@electron-forge/maker-squirrel": "^7.7.0",
+    "@electron-forge/maker-zip": "^7.7.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.7.0",
+    "@electron-forge/plugin-fuses": "^7.7.0",
+    "@electron/fuses": "^1.8.0",
     "@types/electron": "^1.4.38",
     "@types/node": "^22.13.4",
     "electron": "^34.2.0",
     "electron-is-dev": "^3.0.1",
+    "electron-rebuild": "^3.2.9",
+    "node-gyp": "^11.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "scripts": {
-    "start": "electron dist/main.js",
+    "start": "electron-forge start",
     "build": "tsc",
-    "dev": "tsc && electron dist/main.js"
+    "dev": "tsc && electron dist/main.js",
+    "build:win64": "electron-builder --win portable --x64",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "koffi": "^2.10.1"
+  },
+  "build": {
+    "appId": "com.kcu.hack",
+    "productName": "NUTRIA-HACK",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icons/win/icon-nutria.ico"
+    },
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "package.json",
+      "dist/**/*",
+      "dist/bin/kcu-hack.dll"
+    ]
   }
 }

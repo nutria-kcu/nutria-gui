@@ -27,11 +27,12 @@ function createWindow(): void {
   });
 }
 
-console.log(path.join(__dirname, "../nutria-react/build/index.html"));
+console.log(path.join(__dirname, 'bin', 'nutria-middleware.dll') );
 
 import koffi from 'koffi';
 
 // Load the DLL (replace with your actual DLL path)
+const middleware = koffi.load(path.join(__dirname, 'bin', 'nutria-middleware.dll') );
 const myDLL = koffi.load(path.join(__dirname, 'bin', 'kcu-hack.dll') );
 
 // Define the functions from the DLL
@@ -41,7 +42,15 @@ const dll_rifle_ammo_hack = myDLL.func('__stdcall', 'dll_rifle_ammo_hack', 'void
 const dll_armor_hack = myDLL.func('__stdcall', 'dll_armor_hack', 'void', ['int']);
 const dll_check_ac = myDLL.func('__stdcall', 'dll_check_ac', 'bool', []);
 
-// Listen for calls from the renderer process (React)
+const dll_sendMSG = middleware.func('__stdcall', "sendMessage", "bool", ["void *","int", "int"])
+const dll_init = middleware.func('__stdcall', 'initController', "void *", [])
+// // Listen for calls from the renderer process (React)
+
+const pointer = dll_init();
+
+ipcMain.handle('sendMessage', (event, cmd, option) => {
+  dll_sendMSG(pointer,cmd,option);
+})
 
 ipcMain.handle('callAmmoHack', (event, input) => {
   dll_rifle_ammo_hack(input); // Call the DLL function
@@ -67,13 +76,13 @@ ipcMain.handle('checkAC', (event) => {
   return result; // Return the result to React
 });
 
+ipcMain.handle('callHpHack', (event, input) => {
+  dll_hp_hack(input);
+  console.log('HP Hack called with input:', input);
+  return `HP Hack called with input: ${input}`; // Return the result to React
+});
+
 app.whenReady().then(() => {
-  ipcMain.handle('callHpHack', (event, input) => {
-    dll_hp_hack(input);
-    console.log('HP Hack called with input:', input);
-    return `HP Hack called with input: ${input}`; // Return the result to React
-  });
-  
   createWindow()
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

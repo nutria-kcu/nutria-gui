@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, ButtonProps } from '@heroui/react';
 import confetti from 'canvas-confetti';
 
-const EasterButton = () => {
+const EasterButton = (props: ButtonProps) => {
 
 	const handleConfetti = () => {
 		confetti({

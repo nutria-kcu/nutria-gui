@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React, { useEffect, useState } from 'react';
 import nutria from './assets/nutria.png';
 import './App.css';
@@ -5,6 +6,7 @@ import MainPage from './pages/MainPage/MainPage';
 import LoadView from './components/LoadView/LoadView';
 import CompletionView from './components/CompletionView/CompletionView';
 import EasterButton from './components/Button/EasterButton';
+import { Button } from '@heroui/react';
 
 
 function App() {
@@ -33,6 +35,10 @@ function App() {
     await ipcRenderer?.invoke('callRecoilHack', recoilOption)
   };
 
+  const handleSendMSG = async (cmd: number, option: number) => {
+    await ipcRenderer?.invoke('sendMessage', cmd, option)
+  };
+
   const handleCheckAC = async () => {
     if(ipcRenderer) {
       return await ipcRenderer?.invoke('checkAC')
@@ -54,6 +60,11 @@ function App() {
   const setRecoil = (activate: number) => {
     console.log("setRecoid " + activate);
     handleRecoilHack(activate)
+  }
+
+  const sendMSG = (cmd: number, option: number) => {
+    console.log("test");
+    handleSendMSG(cmd, option);
   }
 
   useEffect(() => {
@@ -81,6 +92,8 @@ function App() {
     { label: "Armor", min: 0, max: 50, color: "success" as ColorType, onPress: setAmmor },
   ];
 
+  const EasterConfig = {label: "HP", min: 100, max: 300, color: "primary" as ColorType, onPress: sendMSG }
+
   const toggleConfigs = [
     { onSet: setRecoil }
   ]
@@ -97,6 +110,12 @@ function App() {
         </div>
       </div>
       <EasterButton />
+      <Button onPress={() => {sendMSG(10,10)}}>
+        test
+      </Button>
+      <Button onPress={() => {sendMSG(0,10)}}>
+        test
+      </Button>
     </div>
   );
 }

@@ -4,4 +4,5 @@ export interface SliderConfig {
     max: number;
     color: ColorType;
     onPress?: (value: number) => void;
+    disabled?: boolean;
 }

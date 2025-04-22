@@ -18,6 +18,7 @@ const SlidableSet = (props: SliderConfig) => {
     <div className="w-full flex justify-center items-center gap-4"> {/* Flex container to align slider and button */}
       <Slider
         className="max-w-md"
+        isDisabled={props.disabled}
         defaultValue={props.min}
         onChange={handleChange}
         minValue={props.min}
@@ -26,7 +27,7 @@ const SlidableSet = (props: SliderConfig) => {
         showTooltip={true}
         color={props.color || "danger"}
       />
-      <SetButton onPress={() => props.onPress?.(value)}/> {/* Button next to slider */}
+      <SetButton isDisabled={props.disabled} onPress={() => props.onPress?.(value)}/> {/* Button next to slider */}
     </div>
   )
 }

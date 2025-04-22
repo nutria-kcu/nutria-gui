@@ -40,9 +40,9 @@ const ToggleCheckBox = (props: toggleProps) => {
 			}}
 		>
 			<div className="flex flex-col gap-1">
-				<p className="text-gray-200 text-sm">Enable no Recoil</p> {/* Adjusted to lighter text */}
+				<p className="text-gray-200 text-sm">{props.title}</p> {/* Adjusted to lighter text */}
 				<p className="text-gray-400 text-xs">
-					Current version will only remove y-axis recoil
+					{props.subtitle}
 				</p>
 			</div>
 		</Switch>

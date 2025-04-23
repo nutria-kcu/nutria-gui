@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <HeroUIProvider>
     <React.StrictMode>
-      <App />Ï
+      <App />
     </React.StrictMode>
   </HeroUIProvider>
 );

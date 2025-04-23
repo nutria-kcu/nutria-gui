@@ -1,5 +1,6 @@
 export interface buttonProps {
-    onPress?: (value: number) => void;
+    onPress?: () => void;
     label?: string;
     color?: ColorType;
+    isDisabled?: boolean;
 }

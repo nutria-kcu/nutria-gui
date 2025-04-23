@@ -8,7 +8,7 @@ import { toggleProps } from '../../components/ToggleCheckBox/@types/toggleConfig
 const MainPage = ({ slider, toggle }: MainProps) => {
   
     return (
-      <div className="w-full flex flex-col items-center space-y-6">
+      <div className="w-full flex flex-col items-center space-y-4">
           {slider?.map((sliderConfig: SliderConfig, index: React.Key) => (
             <SlidableSet key={index} {...sliderConfig} />
           ))}

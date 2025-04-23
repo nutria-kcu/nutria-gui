@@ -11,6 +11,7 @@ import { checkAppVersion } from './utils/VersionCheck';
 
 
 function App() {
+  const [isInitialized, setIsInitialized] = useState(false);
   const [aimbotDisabled, setAimbotDisabled] = useState(true);
   const [isActivated, setIsActivated] = useState<boolean>(false);
   const [versionStatus, setVersionStatus] = useState<string>("");
@@ -45,6 +46,11 @@ function App() {
     await ipcRenderer?.invoke('sendMessage', 6, option)
   }
 
+  const handleInit = async () => {
+    setIsInitialized(true);
+    await ipcRenderer?.invoke('initController')
+  }
+
   const handleCheckAC = async () => {
     if (ipcRenderer) {
       return await ipcRenderer?.invoke('checkAC')
@@ -53,15 +59,15 @@ function App() {
 
   const setHP = (hp: number) => {
     console.log("setHP " + hp);
-    handleSendMSG(1,hp);
+    handleSendMSG(1, hp);
   }
   const setAmmo = (ammo: number) => {
     console.log("setAmmo " + ammo);
-    handleSendMSG(2,ammo)
+    handleSendMSG(2, ammo)
   }
   const setAmmor = (ammor: number) => {
     console.log("setAmmor " + ammor);
-    handleSendMSG(3,ammor)
+    handleSendMSG(3, ammor)
   }
   const setRecoil = (activate: number) => {
     console.log("setRecoid " + activate);
@@ -148,10 +154,18 @@ function App() {
     <div className="flex items-center justify-center h-screen App-header">
       <div className="absolute top-4 text-sm px-4 py-2 rounded-full bg-white/10 backdrop-blur-md shadow text-white">
         {versionStatus === 'checking' && '🔄 checking version'}
-        {versionStatus === 'latest' && '✅ up to date'} 
+        {versionStatus === 'latest' && '✅ up to date'}
         {versionStatus === 'outdated' && '⚠️ new update available!'}
         {versionStatus === 'error' && '❌ failed to check version'}
       </div>
+      {!isInitialized && (
+          <button
+            onClick={handleInit}
+            className="absolute bottom-4 right-4 text-xs px-3 py-1 rounded-md bg-gray-700 hover:bg-gray-600 text-white shadow"
+          >
+            Init
+          </button>
+        )}
       <div className="flex w-4/5  justify-center gap-12 py-8"> {/* Ensure full width and horizontal centering */}
         <div className="w-1/4 h-full flex flex-col justify-center items-center"> {/* Image section with vertical stacking */}
           <img src={nutria} className="App-logo" alt="logo" />
@@ -161,13 +175,7 @@ function App() {
           <MainPage slider={sliderConfigs} toggle={toggleConfigs} />
         </div>
       </div>
-      <EasterButton />
-      <Button onPress={() => {sendMSG(10,10)}}>
-        test
-      </Button>
-      <Button onPress={() => {sendMSG(0,10)}}>
-        test
-      </Button>
+      <EasterButton onPress={toggleAimHack} />
     </div>
   );
 }

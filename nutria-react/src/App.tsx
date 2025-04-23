@@ -53,19 +53,19 @@ function App() {
 
   const setHP = (hp: number) => {
     console.log("setHP " + hp);
-    handleHpHack(hp);
+    handleSendMSG(1,hp);
   }
   const setAmmo = (ammo: number) => {
     console.log("setAmmo " + ammo);
-    handleAmmoHack(ammo)
+    handleSendMSG(2,ammo)
   }
   const setAmmor = (ammor: number) => {
     console.log("setAmmor " + ammor);
-    handleArmorHack(ammor)
+    handleSendMSG(3,ammor)
   }
   const setRecoil = (activate: number) => {
     console.log("setRecoid " + activate);
-    handleRecoilHack(activate)
+    handleSendMSG(4, activate)
   }
 
   const sendMSG = (cmd: number, option: number) => {
@@ -161,7 +161,13 @@ function App() {
           <MainPage slider={sliderConfigs} toggle={toggleConfigs} />
         </div>
       </div>
-      <EasterButton onPress={toggleAimHack} />
+      <EasterButton />
+      <Button onPress={() => {sendMSG(10,10)}}>
+        test
+      </Button>
+      <Button onPress={() => {sendMSG(0,10)}}>
+        test
+      </Button>
     </div>
   );
 }

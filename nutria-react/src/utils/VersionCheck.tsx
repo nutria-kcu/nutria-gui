@@ -13,7 +13,7 @@ export async function checkAppVersion(version: string = CURRENT_VERSION): Promis
 	});
 
 	if (!res.ok) {
-		throw new Error('Version check failed');
+		console.log("failed")
 	}
 
 	return res.json();

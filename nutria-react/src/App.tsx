@@ -124,7 +124,8 @@ function App() {
       } else {
         setVersionStatus('outdated');
       }
-    }).catch(() => {
+    }).catch((err) => {
+      console.log(err)
       setVersionStatus('error');
     });
   }, [])
@@ -147,7 +148,7 @@ function App() {
     <div className="flex items-center justify-center h-screen App-header">
       <div className="absolute top-4 text-sm px-4 py-2 rounded-full bg-white/10 backdrop-blur-md shadow text-white">
         {versionStatus === 'checking' && '🔄 checking version'}
-        {versionStatus === 'latest' && '✅ up to date'}
+        {versionStatus === 'latest' && '✅ up to date'} 
         {versionStatus === 'outdated' && '⚠️ new update available!'}
         {versionStatus === 'error' && '❌ failed to check version'}
       </div>
